@@ -152,5 +152,6 @@ def get_characters(int_filter):
 
 
 generate_password(get_password_info())
+time.sleep(0.1)
 print("  Your password is: {}".format(password))
 option = input("\n  Do you want save password [Y]yes, [N]no:")
