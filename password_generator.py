@@ -10,37 +10,37 @@ import time
 
 
 # CREATE FILE - GET FILE PATH FOR SAVE PASSWORDS
-# Get absolute path for file called 'passwords'
-def get_file_dict():
-    os.chdir("~/Escritorio")
-    file_path = ""  # absolute file path
-    # file exists or not
-    if os.path.exists("passwords"):
-        file_path = os.getcwd() + "/" + "passwords"  # set path
-        # print some file path info to user
-        print("File found in: {}".format(os.getcwd() + "/" + "passwords"))
-    # create file if this not exists
-    else:
-        create_file()  # create file
-        get_file_dict()  # recall this function
-
-    return file_path  # return the file path
+# this function is call to get user file path to save password
+def get_file_path():
+    # ask path to user
+    while True:
+        path = input("    -> File path: ")
+        # file exists just end
+        if os.path.exists(path):
+            if os.path.isdir(path):
+                print("  the path must be a file not a dir.")
+                print("  Try again...")
+            else:
+                print("  correct...")
+                break
+        # file not exists, create it
+        else:
+            create_file(path)
+            break
+    return path  # absolute path to file
 
 
 # Create an empty file to storage all generated passwords
 # The path for are decided by system not by user
 # The file are created in Desktop user folder
-def create_file():
-    # change work directory to default directory
-    os.chdir("~/Escritorio")
-    # create file
-    with open("passwords", "w") as file:
+def create_file(path):
+    # create file, with absolute path
+    with open(path, "w") as file:
         file.writelines("# File generate in {}.\n".format(time.ctime()))
         # print absolute file path
-        print("  File created in: {}".format(os.getcwd()))
 
 
-password = ""
+password = ""  # stores the generated password here
 
 
 # When this function is call you must be pass only one argument
@@ -155,11 +155,21 @@ def get_characters(int_filter):
     return build_string
 
 
+# This function save the password in a text file
+def store_password():
+    successful = "  Password saved."
+    print("\n  Saving password...")
+    with open(get_file_path(), "a") as file:
+        password_name = input("    -> Password name: ")
+        file.write(password_name + ": "+password+"\n")
+        print(successful)
+
+
 generate_password(get_password_info())  # call
 time.sleep(0.1)
 print("  Your password is: {}".format(password))  # print generated password
 # ask to user if want save password
 option = input("\n  Do you want save password [Y]yes, [N]no:")
-
-# TODO: Add store password feature
-# TODO: Add feature to save in existing file
+valid_options = ("Y", "y", "yes", "Yes")
+if option in valid_options:
+    store_password()
