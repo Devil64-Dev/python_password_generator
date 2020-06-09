@@ -43,15 +43,20 @@ def create_file():
 password = ""
 
 
+# When this function is call you must be pass only one argument
+# the argument include information as length and characters to use in password
 def generate_password(dic_password_options):
     password_length = dic_password_options["length"]
     password_chars = dic_password_options["chars"]
-    global password
-    password = ""
+    global password  # call global variable to store password
+    password = ""  # re-initialize var to blank value
+    # generate password
     for i in range(0, password_length):
         password += password_chars[random.randint(0, len(password_chars)-1)]
 
 
+# This function is call to get information about password, the information
+# getter here are much important to generate password (length and chars to use)
 def get_password_info():
     print("\x1bc")  # clear screen output
     password_options = {}
@@ -150,7 +155,10 @@ def get_characters(int_filter):
     return build_string
 
 
-generate_password(get_password_info())
+generate_password(get_password_info())  # call
 time.sleep(0.1)
-print("  Your password is: {}".format(password))
+print("  Your password is: {}".format(password))  # print generated password
+# ask to user if want save password
 option = input("\n  Do you want save password [Y]yes, [N]no:")
+
+# TODO: Add store password feature
