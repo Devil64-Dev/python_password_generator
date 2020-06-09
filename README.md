@@ -4,6 +4,7 @@
 </p>
 <h2>use</h2>
 <p>To use 'Password Generator' just run <code>python3 password_generator.py</code>
+    or call as normal script <code>./password_generator.py</code>
     and fill required information the program show your generated password.
 </p>
 <footer>
