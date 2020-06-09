@@ -145,7 +145,6 @@ def get_characters(int_filter):
     # password can only include letters Mm
     else:
         build_string = letter_uppercase + letters_lowercase
-        print(build_string)
 
     # return builder string
     return build_string
