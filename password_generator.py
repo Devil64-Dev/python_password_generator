@@ -162,3 +162,4 @@ print("  Your password is: {}".format(password))  # print generated password
 option = input("\n  Do you want save password [Y]yes, [N]no:")
 
 # TODO: Add store password feature
+# TODO: Add feature to save in existing file
